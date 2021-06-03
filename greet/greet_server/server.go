@@ -12,7 +12,9 @@ import (
 
 type server struct{}
 
+// All server type will have Greet() interface function
 func (*server) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
+	fmt.Printf("Greet function was invoked with %v\n", req)
 	firstName := req.GetGreeting().GetFirstName()
 
 	result := "Hello " + firstName
@@ -32,8 +34,10 @@ func main() {
 		log.Fatalf("Fail to listen: %v", err)
 	}
 
+	// create grpc server
 	s := grpc.NewServer()
 
+	// create GreetService
 	greetpb.RegisterGreetServiceServer(s, &server{})
 
 	if err := s.Serve(lis); err != nil {
