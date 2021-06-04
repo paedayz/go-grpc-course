@@ -24,6 +24,14 @@ message GreetManyTimesResponse {
     string result = 1;
 }
 
+message LongGreetRequest {
+    Greeting greeting = 1;
+}
+
+message LongGreetResponse {
+    string result = 1;
+}
+
 // Bussiness logic
 service GreetService{
     // Unary API
@@ -31,4 +39,7 @@ service GreetService{
 
     // Sever Streaming api
     rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTimesResponse) {};
+
+    // Client Streaming api
+    rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse);
 }
