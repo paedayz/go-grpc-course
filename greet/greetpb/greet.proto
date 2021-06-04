@@ -29,6 +29,6 @@ service GreetService{
     // Unary API
     rpc Greet(GreetRequest) returns (GreetResponse) {};
 
-    // Unary
+    // Sever Streaming api
     rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTimesResponse) {};
 }
